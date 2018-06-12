@@ -16,9 +16,6 @@ module.exports = function(context, req) {
       db.collection('picks')
         .aggregate([
           {
-            $match: { resolved: true },
-          },
-          {
             $group: {
               _id: { id: '$user', username: '$username' },
               Points: { $sum: '$points' },
