@@ -26,7 +26,7 @@ module.exports = function(context, req) {
             },
           },
           {
-            $sort: { Points: -1 },
+            $sort: { Points: -1, Picks: -1 },
           },
         ])
         .toArray((err, result) => {
