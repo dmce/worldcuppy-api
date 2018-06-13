@@ -38,7 +38,13 @@ module.exports = function(context, req) {
             },
           },
           {
-            $sort: { Points: -1, PicksFinished: -1, PicksTotal: -1 },
+            $sort: {
+              Points: -1,
+              PicksFinished: -1,
+              PicksWins: -1,
+              PicksDraws: -1,
+              PicksTotal: -1,
+            },
           },
         ])
         .toArray((err, result) => {
