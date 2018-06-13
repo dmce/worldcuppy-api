@@ -25,6 +25,16 @@ module.exports = function(context, req) {
                   $cond: [{ $eq: ['$resolved', true] }, 1, 0],
                 },
               },
+              PicksWins: {
+                $sum: {
+                  $cond: [{ $eq: ['$points', 3] }, 1, 0],
+                },
+              },
+              PicksDraws: {
+                $sum: {
+                  $cond: [{ $eq: ['$points', 1] }, 1, 0],
+                },
+              },
             },
           },
           {
