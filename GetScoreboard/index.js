@@ -19,11 +19,16 @@ module.exports = function(context, req) {
             $group: {
               _id: { username: '$username', id: '$user' },
               Points: { $sum: '$points' },
-              Picks: { $sum: 1 },
+              PicksTotal: { $sum: 1 },
+              PicksFinished: {
+                $sum: {
+                  $cond: [{ $eq: ['$resolved', true] }, 1, 0],
+                },
+              },
             },
           },
           {
-            $sort: { Points: -1, Picks: -1 },
+            $sort: { Points: -1, PicksFinished: -1 },
           },
         ])
         .toArray((err, result) => {
