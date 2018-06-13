@@ -17,9 +17,16 @@ module.exports = function(context, req) {
         .aggregate([
           {
             $group: {
-              _id: { id: '$user', username: '$username' },
+              _id: { username: '$username', id: '$user' },
               Points: { $sum: '$points' },
               Picks: { $sum: 1 },
+              Finished: {
+                $cond: {
+                  if: { $eq: ['$resolved', true] },
+                  then: { $sum: 1 },
+                  else: { $sum: 0 },
+                },
+              },
             },
           },
           {
