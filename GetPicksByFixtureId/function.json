@@ -6,10 +6,8 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "picks/fixture/{id}",
-      "methods": [
-        "get"
-      ]
+      "route": "fixture/{id}/picks",
+      "methods": ["get"]
     },
     {
       "type": "http",
