@@ -6,10 +6,8 @@
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
-      "route": "picks/user/{user}",
-      "methods": [
-        "get"
-      ]
+      "route": "user/{user}/picks",
+      "methods": ["get"]
     },
     {
       "type": "http",
