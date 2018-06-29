@@ -15,6 +15,7 @@ module.exports = function(context, req) {
       const user = context.bindingData.user;
       db.collection('picks')
         .aggregate([
+          { $match: { gameday: { $gte: 16 } } },
           {
             $group: {
               _id: { username: '$username', id: '$user' },
@@ -33,6 +34,11 @@ module.exports = function(context, req) {
               PicksDraws: {
                 $sum: {
                   $cond: [{ $eq: ['$points', 1] }, 1, 0],
+                },
+              },
+              PicksBonus: {
+                $sum: {
+                  $cond: [{ $eq: ['$points', 2] }, 1, 0],
                 },
               },
             },
