@@ -31,7 +31,7 @@ module.exports = validateJwt(function(context, req) {
       const db = database.db('worldcuppy');
       const id = context.bindingData.id;
       db.collection('picks').deleteMany(
-        { fixtureId: data.fixtureId, user: data.user },
+        { gameday: data.gameday, user: data.user },
         (err, result) => {
           if (err) throw err;
           context.res = {
